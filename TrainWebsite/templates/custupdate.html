@@ -1,0 +1,123 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Update Booking{% endblock %}
+
+{% block header %}
+  Update Train Booking - {{name}}
+{% endblock %}
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Update a Booking Using the Form Below:</h2>
+  <form method="POST" onsubmit="return dateValidation()">
+    <div class="form">
+      <div class="FormItem">
+        <div>
+          <p>Bookings are formatted as:</p>
+          <p>BookID | TripID | Departure Date | Trip Type | #Adult | #Child | Timestamp</p>
+        </div>
+        <div class="FormItem">
+          <label for="booking">Select a booking to update:</label><br>
+          <select class="input" id="booking" name="booking">
+            <option value="" disabled selected>Booked Trips...</option>
+            {% for book in user_book %}
+            <option value="{{book[0]}}">{{book[0]}} | {{book[2]}} | {{book[3]}} | {{book[7]}} | {{book[5]}} | {{book[6]}} | {{book[9]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br>
+        <p>Update the booking:</p>
+        <label for="departTrip">(Depart/Depart Time/Arrive/Arrive Time) <br> Trip:</label><br>
+        <select class="input" id="departTrip" name="departTrip" required>
+          <option value="" disabled selected>Trips...</option>
+          {% for row in trips %}
+          <option value="{{row[0]}}">{{row[0]}} | {{row[1]}} | {{row[2]}} | {{row[3]}} | {{row[4]}}</option>          
+          {% endfor %}
+        </select>
+      </div>
+      <div class="FormItem">
+        <label for="departDate">Departure Date:</label><br>
+        <input type="date" class="input" id="departDate" name="departDate" onchange="return dateValidation()" required>
+      </div>
+      <div class="FormItem">
+        <p>Trip Type:</p>
+        <input type="radio" id="triptype" name="triptype" value="return" onclick="showReturn()" required>
+        <label for="return">Return</label>
+        <input type="radio" id="triptype" name="triptype" value="oneway" onclick="hideReturn()"required>
+        <label for="return">One way</label>
+      </div>
+      <div class="FormItem" id="returnTripDiv2">
+        <label for="returnDate">Return Date:</label><br>
+        <input type="date" class="input" id="returnDate" name="returnDate" onchange="return returnDateValidation()">
+      </div>
+      <div class="FormItem">
+        <label for="NumSeatAdult">Number of Adults:</label><br>
+        <input type="number" class="input" id="NumSeatAdult" name="NumSeatAdult" min="0" max="5" required>
+      </div>
+      <div class="FormItem">
+        <label for="NumSeatChild">Number of Children (Under 10):</label><br>
+        <input type="number" class="input" id="NumSeatChild" name="NumSeatChild" min="0" max="5" required>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn" onclick="return confirm('Are you sure these details are correct?');">Book</button>
+      </div>
+      <script>
+        document.getElementById('returnTripDiv2').style.display = 'none'
+        function showReturn(){
+          document.getElementById('returnTripDiv2').style.display = 'block'
+        }
+        function hideReturn(){
+          document.getElementById('returnTripDiv2').style.display = 'none'
+        }
+        function dateValidation(){
+          var today = new Date().setHours(0,0,0,0);
+          var tripOnewayDate = Date.parse(document.getElementById("departDate").value);
+          var tripOnewayDate = new Date(tripOnewayDate).setHours(0,0,0,0);
+          if (tripOnewayDate < today) {
+            alert('Departure Date cannot be in the past.')
+            document.getElementById("departDate").value = new Date().setHours(0,0,0,0);
+            document.getElementById("departDate").style.border='1px solid red';
+            document.getElementById("departDate").style.focus();
+            return false;
+          }
+          else {
+            document.getElementById("departDate").style.border='1px solid';
+            return true;
+          }
+        }
+        function returnDateValidation(){
+          var tripOnewayDate = Date.parse(document.getElementById("departDate").value);
+          var tripOnewayDate = new Date(tripOnewayDate).setHours(0,0,0,0);
+          var tripReturnDate = Date.parse(document.getElementById("returnDate").value);
+          var tripReturnDate = new Date(tripReturnDate).setHours(0,0,0,0);
+          if (tripReturnDate <= tripOnewayDate) {
+            alert('Return Date should not be before or the same as the Departure Date.')
+            document.getElementById("returnDate").value = new Date().setHours(0,0,0,0);
+            document.getElementById("returnDate").style.border='1px solid red';
+            document.getElementById("returnDate").style.focus();
+            return false;
+          }
+          else {
+            document.getElementById("returnDate").style.border='1px solid';
+            return true;
+          }
+        }
+        function resetForm() {
+          document.getElementById("bookForm").reset();
+        }
+      </script>
+    </div>
+  </form>
+</div> 
+{% endblock %} 
+
+
+{% block aside %}
+  <h2>Update Your Booking Here!</h2>
+{% endblock %} 
+

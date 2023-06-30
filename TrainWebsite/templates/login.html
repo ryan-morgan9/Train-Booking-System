@@ -1,0 +1,45 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}Login{% endblock %}
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Login Using the Form Below:</h2>
+  <form method="POST" action="/login">
+    <div class="form">
+      <div class="FormItem">
+        <label for="Email">Email:</label><br>
+        <input type="text" class="input" id="email" name="email" required>
+      </div>
+      <div class="FormItem">
+        <label for="password">Password:</label><br>
+        <input type="password" class="input" id="password" name="password" required>
+      </div>
+      <div>
+        <a href="/changepassword"><b><u>Change Password?</u></b></a>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn" onclick="alert('This website uses sessions that stores data about you. The functionality of this website relies on these sessions. By using this website, you agree to have your data stored in sessions. Name, UserID, UserType and Login Status is stored.')">Login</button>
+      </div>
+
+    </div>
+  </form>
+</div> 
+{% endblock %} 
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Log into your account by typing into the form.</p>
+  <h2>Where?</h2>
+  <p>Use the text boxes to enter your details.</p>
+  <h2>How?</h2>
+  <p>Click the button to login...</p>
+{% endblock %} 
+

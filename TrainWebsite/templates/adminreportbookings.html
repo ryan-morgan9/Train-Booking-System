@@ -1,0 +1,51 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Admin Report - Bookings{% endblock %}
+
+{% block header %}
+  Admin Report, View Bookings in a Time Period - {{name}}
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">View Bookings in a Time Period By Using the Form Below:</h2>
+  <form method="POST">
+    <div class="form">
+      <div class="FormItem">
+        <label for="dateFirst">Earliest Date:</label><br>
+        <input type="date" class="input" id="dateFirst" name="dateFirst" required>
+      </div>
+      <div class="FormItem">
+        <label for="dateLast">Latest Date:</label><br>
+        <input type="date" class="input" id="dateLast" name="dateLast" required>
+      </div>
+      <div class="FormItem">
+        <a href="" onclick="resetForm()"><b><u>Reset Form</u></b></a>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn">View</button>
+      </div>
+      <script>
+        function resetForm() {
+          document.getElementById("bookForm").reset();
+        }
+      </script>
+    </div>
+  </form>
+</div> 
+{% endblock %}  
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>This is an admin report. View bookings that were made by customers in a specified time period!</p>
+  <h2>Where?</h2>
+  <p>You can use the form to select dates.</p>
+  <h2>How?</h2>
+  <p>Enter details into the form and click the submit button.</p>
+{% endblock %} 

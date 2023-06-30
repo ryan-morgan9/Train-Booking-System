@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+<head>
+  <title>{% block title %}Base{% endblock %}</title>
+  {% block head %}
+  {% endblock %}
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSSmedia.css') }}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+</head>
+<body>
+
+<div class="header">
+  <h1>{% block header %}Base{% endblock %}</h1>
+</div>
+
+<div class="row">
+  <div class="col-3 col-s-3 menu">
+    {% block menu %}
+    <ul>
+      {% if logged == True %}
+      <li><a href="/logout">Logout</a></li>
+      <li><a href="/book">Book</a></li>
+      <li><a href="/customer">Customer Controls</a></li>
+      {% endif %}
+      {% if usertype == 'admin' %}
+      <li><a href="/admin">Admin Controls</a></li>
+      {% endif %}
+      <li><a href="/changepassword">Change Password</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/signup">Sign up</a></li>
+      <li><a href="/search">Lookup</a></li>
+    </ul>
+    {% endblock %} 
+  </div>
+
+  <div class="col-6 col-s-9">
+    {% with messages = get_flashed_messages(with_categories=true) %} 
+    {% if messages %} 
+      {% for category, message in messages %} 
+        {% if category == 'error' %}
+        <div class="alert alert-danger alter-dismissable fade show popup" role="alert" style="margin: auto;">
+          {{ message }}
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show popup" role="alert" style="margin: auto;">
+          {{ message }}
+        </div>
+        {% endif %} 
+      {% endfor %} 
+    {% endif %} 
+    {% endwith %}
+    {% block main %}
+        <p>Base content</p>
+    {% endblock %} 
+  </div>
+
+  <div class="col-3 col-s-12">
+    <div class="aside">
+        {% block aside %}
+            <p>Base aside</p>
+        {% endblock %} 
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  {% block footer %}
+  <h4>Train Booking System - Ryan Morgan, Easy Travel</h4>
+  {% endblock %}
+</div>
+
+</body>
+</html>

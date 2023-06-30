@@ -1,0 +1,72 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Confirm Booking{% endblock %}
+
+{% block header %}
+  Confirm Train Booking Details
+{% endblock %}
+
+{% block main %}
+<div id="formInput">
+    <br>
+    <div id="tableDiv">
+      <p><b>Train Journey:</b></p>
+      <table border = 1>
+        <tr>
+          <th><b>TripID</b></th>
+          <th><b>Place of Departure</b></th>
+          <th><b>Time of Departure</b></th>
+          <th><b>Place of Arrival</b></th>
+          <th><b>Time of Arrival</b></th>
+          <th><b>Price of Booking</b></th>
+        </tr>
+        <tr>
+          <td> {{resultset[0]}} </td>
+          <td> {{resultset[1]}} </td>
+          <td> {{resultset[10]}} </td>
+          <td> {{resultset[2]}} </td>
+          <td> {{resultset[11]}} </td>
+          <td> &#163;{{resultset[8]}} </td>
+        </tr>
+      </table>
+
+      <p>Your new ID for this booking is: {{resultset[9]}}</p>
+      <p>Trip Type: {{resultset[7]}}</p>
+      <p>Date of Departure: {{resultset[3]}}</p>
+      <p>Seat Availability for Trip: {{seatavailability[0]}}</p>
+      {% if resultset[4] != None %}
+      <p>Date of Return: {{resultset[4]}}</p>
+      <p>Seat Availability for Return: {{seatavailability[1]}}</p>
+      <p>Remember, your booking price is doubled because your trip is a return.</p>
+      {% endif %}
+      <p>Number of Adults: {{resultset[5]}} &nbsp; Number of Children: {{resultset[6]}}</p>
+      {% if paytype == 'paypal' %}
+      <p>You used Paypal to pay for this booking.</p>
+      {% endif %}
+      {% if paytype == 'card' %}
+      <p>You used a card which number ends in '{{cardnumber}}' to pay for this booking.</p>
+      {% endif %}
+
+      <div class="FormItem">
+        <a href="custconfirm/{{receipt_name}}" download><button>Download Booking Receipt</button></a>
+      </div>
+      <div class="FormItem">
+        <a href="/customer"><button>Confirm This Booking</button></a>
+      </div>
+    </div>
+</div> 
+{% endblock %}  
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Confirm the Details of Your Booking Here. Also, download your receipt!</p>
+  <h2>Where?</h2>
+  <p>Review the form and click the submit button, or click the link the cancel.</p>
+  <h2>How?</h2>
+  <p>Click the submit button, or click the link the cancel.</p>
+{% endblock %} 

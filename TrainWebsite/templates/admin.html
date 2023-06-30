@@ -1,0 +1,60 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Admin Page{% endblock %}
+
+{% block header %}
+  Train Booking Admin Page - {{name}}
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Select From Bookings Made By Customers:</h2>
+  <div class="form">
+    <form style="text-align: center;">
+      <div>
+        <p>Bookings are formatted as:</p>
+        <p>BookID | TripID | UserID | #Adult | #Child | Departure Date</p>
+      </div>
+      <div class="FormItem">
+        <label for="booking">All Bookings Made:</label><br>
+        <select class="input" id="booking" name="booking">
+          <option value="" disabled selected>Booked Trips...</option>
+          {% for book in cust_book %}
+          <option value="{{book[0]}}">{{book[0]}} | {{book[1]}} | {{book[2]}} | {{book[3]}} | {{book[5]}} | {{book[6]}} | {{book[9]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+    </form>
+    <div>
+      <a href="/book"><button>Create Booking</button></a> 
+      <a href="/adminupdate"><button>Update Booking</button></a> 
+      <a href="/admindel"><button>Delete Booking</button></a>
+      <br> <br>
+      <a href="/adminrouteadd"><button>Add New Route</button></a>
+      <a href="/adminroutemod"><button>Modify Route</button></a>
+      <a href="/adminroutedel"><button>Delete Route</button></a>
+      <br> <br>
+      <a href="/adminreportbookings"><button>Generate Report (Bookings Between 2 Dates)</button></a>
+      <br> <br>
+      <a href="/adminreportpassenger"><button>Generate Report (Passengers On Journey)</button></a>
+    </div>
+    <br>
+  </div>
+</div>
+{% endblock %}
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Here you can access admin controls! You can assist customers, adjust train routes, or generate reports!</p>
+  <h2>Where?</h2>
+  <p>You have a variety of buttons to choose from, depending on what you are doing.</p>
+  <h2>How?</h2>
+  <p>Click one of the buttons, depending on your needs.</p>
+{% endblock %} 

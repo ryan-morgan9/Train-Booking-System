@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'htbsStyle.css') }}">
+
+    <title>Welcome HTBS</title>
+
+</head>
+
+
+<body>
+
+    <div>
+        <header class="col-12">
+            <h1 class="header_title"> <span class="title_horizon">Horizon</span> <span class="title_travel">Travel</span></h1>
+        </header>
+    </div>
+
+
+    <div class="topnav col-12">
+
+        
+        <a class="active" href="/horizonTravelBookingService">Home</a>
+        
+        <a href="/htbsMakeBooking">Make a Booking</a>
+        <a style="background-color: red; color: white;" href="/customer">View Bookings</a>
+
+            <nav class="topnav_right">
+                <a href="/search">Individual Work Pages</a>
+                <a style="background-color: red; color: white;" href="/customer">Account Details</a>
+                <a style="background-color: red; color: white;" href="/logout">Logout</a>
+            </nav>
+
+    </div>
+
+    <div class="col-12">
+
+        <section>
+            <h2 class = "col-3">About Us</h2>
+            <p class="generic_text">
+                Here at Horizon Travel we are dedicated to ensuring you can get where you need to be when you need to be. 
+            </p>
+        </section>
+
+        <section>
+            <h2 class = "col-3">Where do we travel?</h2>
+            <p class="generic_text">
+                Below you can see a list of all the locations we can take you to:
+            </p>
+            
+            <div class="">
+                <ul class="locations generic_text">
+                    <li>Birmingham</li>
+                    <li>Bristol</li>
+                    <li>Cardiff</li>
+                    <li>Edinburgh</li>
+                    <li>Glasgow</li>
+                    <li>London</li>
+                    <li>Manchester</li>
+                    <li>Newcastle</li>
+                    <li>Southhampton</li>
+                </ul>
+            </div>
+
+            {% if session["logged_in"] != True %}
+            <p>You will need to login to make a booking. Click below to login now!</p>
+            <a href="/login"><button class="form_button"> Login </button></a>
+            {% endif %}
+            
+        </section>
+    </div>
+
+    
+</body>
+
+
+</html>

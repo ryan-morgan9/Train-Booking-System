@@ -1,0 +1,67 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block header %}
+  Sign up
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Create an Account Using the Form Below:</h2>
+  <form method="POST">
+    <div class="form">
+      <div class="FormItem">
+        <label for="email">Email:</label><br>
+        <input type="email" class="input" id="email" name="email" required>
+      </div>
+      <div class="FormItem">
+        <label for="username">Name:</label><br>
+        <input type="text" class="input" id="name" name="name" required>
+      </div>
+      <div class="FormItem">
+        <label for="password">Password:</label><br>
+        <input type="password" class="input" id="password1" name="password1" required>
+      </div>
+      <div class="FormItem">
+        <label for="password">Repeat Password:</label><br>
+        <input type="password" class="input" id="password2" name="password2" required>
+      </div>
+      <div class="FormItem">
+        <p>User Type:</p>
+        <input type="radio" id="customer" name="usertype" value="customer" required>
+        <label for="return">Customer</label>
+        <input type="radio" id="admin" name="usertype" value="admin" onclick="return confirm('Are you really an admin?');" required>
+        <label for="return">Admin</label>
+      </div>
+      <div class="FormItem">
+        <a href="" onclick="resetForm()"><b><u>Reset Form</u></b></a>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn">Login</button>
+      </div>
+      <script>
+        function resetForm() {
+          document.getElementById("bookForm").reset();
+        }
+      </script>
+    </div>
+  </form>
+</div> 
+{% endblock %} 
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Make an account using the form!</p>
+  <h2>Where?</h2>
+  <p>Type you details into the text boxes on the form.</p>
+  <h2>How?</h2>
+  <p>Click the button on the bottom of the form to submit your details!</p>
+{% endblock %} 
+

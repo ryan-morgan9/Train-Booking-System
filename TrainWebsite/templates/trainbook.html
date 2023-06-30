@@ -1,0 +1,158 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Train Booking{% endblock %}
+
+{% block header %}
+  Train Booking - {{name}}
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Book Using the Form Below:</h2>
+  <form action="/selectbooking" onsubmit="return dateValidation()" id="bookForm" method="POST">
+    <div class="form">
+      <div class="FormItem">
+        <label for="departTrip">Depart:</label><br>
+        <select class="input" id="departTrip" name="departTrip" onchange="getarrivalcity(this.value)" required>
+          <option value="" disabled selected>Depart...</option>
+          {% for departure in trips %}
+          <option value="{{departure}}">{{departure}}</option>          
+          {% endfor %}
+        </select>
+      </div>
+      <div class="FormItem">
+        <label for="arrivalslist">Arrive:</label><br>    
+        <select id="arrivalslist" name="arrivalslist">            
+        
+        </select>
+      </div>
+      <div class="FormItem">
+        <label for="departDate">Departure Date:</label><br>
+        <input type="date" class="input" id="departDate" name="departDate" onchange="return dateValidation()" required>
+      </div>
+      <div class="FormItem">
+        <p>Trip Type:</p>
+        <input type="radio" id="triptype" name="triptype" value="return" onclick="showReturn()" required>
+        <label for="return">Return</label>
+        <input type="radio" id="triptype" name="triptype" value="oneway" onclick="hideReturn()"required>
+        <label for="return">One way</label>
+      </div>
+      <div id="returnTripDiv1">
+        <div class="FormItem">
+          <label for="returnDate">Return Date:</label><br>
+          <input type="date" class="input" id="returnDate" name="returnDate" onchange="return returnDateValidation()">
+        </div>
+      </div>
+      <div class="FormItem">
+        <label for="NumSeatAdult">Number of Adults:</label><br>
+        <input type="number" class="input" id="NumSeatAdult" name="NumSeatAdult" min="0" max="5" required>
+      </div>
+      <div class="FormItem">
+          <label for="NumSeatChild">Number of Children (Under 10):</label><br>
+          <input type="number" class="input" id="NumSeatChild" name="NumSeatChild" min="0" max="5" required>
+      </div>
+      <div class="FormItem">
+        <a href="" onclick="resetForm()"><b><u>Reset Form</u></b></a>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn">Book</button>
+      </div>
+      <script>
+        document.getElementById('returnTripDiv1').style.display = 'none'
+        function showReturn(){
+          document.getElementById('returnTripDiv1').style.display = 'block'
+        }
+        function hideReturn(){
+          document.getElementById('returnTripDiv1').style.display = 'none'
+        }
+        function dateValidation(){
+          var today = new Date().setHours(0,0,0,0);
+          var tripOnewayDate = Date.parse(document.getElementById("departDate").value);
+          var tripOnewayDate = new Date(tripOnewayDate).setHours(0,0,0,0);
+          if (tripOnewayDate < today) {
+            alert('Departure Date cannot be in the past.')
+            document.getElementById("departDate").value = new Date().setHours(0,0,0,0);
+            document.getElementById("departDate").style.border='1px solid red';
+            document.getElementById("departDate").style.focus();
+            return false;
+          }
+          else {
+            document.getElementById("departDate").style.border='1px solid';
+            return true;
+          }
+        }
+        function returnDateValidation(){
+          var tripOnewayDate = Date.parse(document.getElementById("departDate").value);
+          var tripOnewayDate = new Date(tripOnewayDate).setHours(0,0,0,0);
+          var tripReturnDate = Date.parse(document.getElementById("returnDate").value);
+          var tripReturnDate = new Date(tripReturnDate).setHours(0,0,0,0);
+          if (tripReturnDate <= tripOnewayDate) {
+            alert('Return Date should not be before or the same as the Departure Date.')
+            document.getElementById("returnDate").value = new Date().setHours(0,0,0,0);
+            document.getElementById("returnDate").style.border='1px solid red';
+            document.getElementById("returnDate").style.focus();
+            return false;
+          }
+          else {
+            document.getElementById("returnDate").style.border='1px solid';
+            return true;
+          }
+        }
+        function resetForm() {
+          document.getElementById("bookForm").reset();
+        }
+        function getarrivalcity(deptcity)    
+        {
+              var req = new XMLHttpRequest();        
+              arrivalslist = document.getElementById('arrivalslist');        
+              
+              req.onreadystatechange = function(){
+                  if (req.readyState == 4){
+                      if (req.status != 200){
+                          //error handling code here
+                      }
+                      else{
+                          var response = JSON.parse(req.responseText);                   
+                          //document.getElementById('myDiv').innerHTML = response.username
+                          var size = response.size;                   
+                          //alert(response.returncities[0]);
+                          for (var x=0; x < arrivalslist.length; x++){
+                              arrivalslist.remove(x);                        
+                          }
+                          
+                          for (var i=0; i < size; i++){  
+
+                                  arrivalslist.add(new Option(response.returncities[i], response.returncities[i]));    
+                          }
+                            // var option = document.createElement("Option");
+                              //option.text = response.returncities;
+                              //arrivalslist.add(option);
+                      }
+                  }
+              }
+              req.open('GET', '/returncity/?q='+deptcity);
+              req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");   
+              req.send(); 
+              return false;
+          }
+      </script>
+    </div>
+  </form>
+</div> 
+{% endblock %}  
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Book your own train journey!</p>
+  <h2>Where?</h2>
+  <p>You can use the form to create a booking.</p>
+  <h2>How?</h2>
+  <p>Enter details into the form and click the submit button.</p>
+  <img src="/static/train.jpg" alt="GWR Train" width="350" style="border-radius: 20px;">
+{% endblock %} 

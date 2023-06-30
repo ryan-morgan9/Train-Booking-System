@@ -1,0 +1,137 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Pick Booking{% endblock %}
+
+{% block header %}
+  Pick Train Booking Details
+{% endblock %}
+ 
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Select Booking Using the Form Below:</h2>
+  <form action="/custconfirm" method="POST">
+    <div class="form">
+      <div class="FormItem">
+      <table border = 1> 
+        <tr>
+            <th> Departure Time </th> <th> Arrival Time </th>  
+            <th> Price-Adult </th> <th> Price-Child </th>
+            <th> Total Price </th> 
+            <th> Select Option </th>
+        </tr>
+        
+	    {% for row in resultset %}
+	    <tr> 
+            <td> {{row[2]}} </td> 
+            <td> {{row[4]}} </td> 
+            <td> &#163;{{row[5]}} </td>  
+            <td> &#163;{{row[5] / 2}} </td>             
+             <td> &#163;{{row[6]}} </td>
+             <input type="hidden" name="totalfare" id="totalfare" value="{{row[6]}}"/>
+            <td> <input type="radio" name="bookingchoice" value="{{row[0]}}" checked></td> 
+        </tr> 
+        
+	   {% endfor %} 
+	  </table> 
+    </div>
+    <div class="FormItem">
+      Departure City : {{lookupdata[0]}} <br/>
+      <input type="hidden" name="departPlace" id="departPlace" value="{{lookupdata[0]}}"/>
+    </div>
+    <div class="FormItem">
+      Arrival City : {{lookupdata[1]}} <br/>
+      <input type="hidden" name="arrivePlace" id="arrivePlace" value="{{lookupdata[1]}}"/>
+    </div>
+    <div class="FormItem">
+      Outward Date : {{lookupdata[2]}} <br/>
+      <input type="hidden" name="departDate" id="departDate" value="{{lookupdata[2]}}"/>
+    </div>
+    {% if lookupdata[3] != None %}
+    <div class="FormItem">
+      Return Date : {{lookupdata[3]}} <br/>
+    <input type="hidden" name="returnDate" id="returnDate" value="{{lookupdata[3]}}"/>
+    </div>
+    {% endif %}
+    <div class="FormItem">
+      Adult Seats : {{lookupdata[4]}} <br/>
+      <input type="hidden" name="NumSeatAdult" id="NumSeatAdult" value="{{lookupdata[4]}}"/>
+    </div>
+    <div class="FormItem">
+      Child Seats : {{lookupdata[5]}} <br/>
+      <input type="hidden" name="NumSeatChild" id="NumSeatChild" value="{{lookupdata[5]}}"/>
+    </div> 
+    <div class="FormItem">
+      Trip Type: {{lookupdata[6]}} <br/>
+      <input type="hidden" name="triptype" id="triptype" value="{{lookupdata[6]}}"/>
+    </div> 
+    <div class="FormItem">
+      <p><b>Payment Type:</b></p>
+      <input type="radio" id="paytype" name="paytype" value="card" onclick="showCard()" required>
+      <label for="return">Card</label>
+      <input type="radio" id="paytype" name="paytype" value="paypal" onclick="showPaypal()"required>
+      <label for="return">PayPal</label>
+    </div>
+    <div id="cardDiv">
+    <div class="FormItem">
+          <label for="cardNum">Card Number:</label><br>
+          <input type="number" class="input" id="cardNum" name="cardNum" max="9999999999999999" size="16"> 
+    </div>
+    <div class="FormItem">
+          <label for="cardName">Name on card:</label><br>
+          <input type="text" class="input" id="cardName" name="cardName">
+    </div>
+    <div class="FormItem">
+          <label for="cardExp">Expires:</label><br>
+          <input type="text" class="input" id="cardExp" name="cardExp" max="9999" size="4">
+    </div>
+    <div class="FormItem">
+          <label for="cardCVV">CVV:</label><br>
+          <input type="number" class="input" id="cardCVV" name="cardCVV" max="999" size="3">
+    </div>
+    <div class="FormItem">
+        <button type="submit" class="input btn">Pay</button>
+    </div>
+    </div>
+    <div id="paypalDiv">
+      <div class="FormItem">
+          <label for="paypalID">PayPal:</label><br>
+          <!-- Display the payment button. -->
+          <input type="image" name="submit" border="0"
+          src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+          alt="Buy Now" onclick="window.open('paymentsuccess','success','width=300,height=170')">
+      </div>
+    </div>
+    <div class="FormItem">
+      <a href="/book"><b><u>Go Back to Booking</u></b></a>
+    </div>
+    <script>
+      document.getElementById('cardDiv').style.display = 'none'
+      document.getElementById('paypalDiv').style.display = 'none'
+      function showCard(){
+        document.getElementById('cardDiv').style.display = 'block'
+        document.getElementById('paypalDiv').style.display = 'none'
+      }
+      function showPaypal(){
+        document.getElementById('cardDiv').style.display = 'none'
+        document.getElementById('paypalDiv').style.display = 'block'
+      }
+    </script>
+    </div>
+  </form>
+</div> 
+{% endblock %}  
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Confirm the details of your booking here and pay for it!</p>
+  <h2>Where?</h2>
+  <p>Review the form, enter your payment details and submit the form.</p>
+  <h2>How?</h2>
+  <p>Click the payment button.</p>
+{% endblock %} 
+

@@ -1,0 +1,47 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Admin Report - Bookings{% endblock %}
+
+{% block header %}
+    Admin Report, View Bookings in a Time Period - {{name}}
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+    <h2 id="ContentTitle">Bookings for Dates Selected:</h2>
+    <div id="tableDiv">
+        <div>
+            <p>Options are formatted as:</p>
+            <p>BookID | UserID | TripID | Depart Date | Return Date</p>
+            <p>| #Adults | #Children | TripType | Price | Timestamp</p>
+        </div>
+        <div class="FormItem">
+            <label for="booking">Bookings:</label><br>
+            <select class="input" id="booking" name="booking">
+                <option value="" disabled selected>Booked Trips...</option>
+                {% for row in bookings %}
+                <option value="{{row[0]}}">{{row[0]}} | {{row[1]}} | {{row[2]}} | {{row[3]}} | {{row[4]}} | {{row[5]}} | {{row[6]}} | {{row[7]}} | {{row[8]}} | {{row[9]}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <p>Number of bookings made between {{dateFirst}} and {{dateLast}} is {{bookingsrows}}.</p>
+        </div>
+        <div>
+            <a href="/admin"><button>Back to Admin Controls...</button></a>
+        </div>
+    </div>
+</div> 
+{% endblock %} 
+
+
+
+{% block aside %}
+  <h2>Here you can see the result of your search!</h2>
+{% endblock %} 

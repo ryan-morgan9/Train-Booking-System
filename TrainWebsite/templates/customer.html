@@ -1,0 +1,51 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Customer Controls{% endblock %}
+
+{% block header %}
+  Train Booking Customer Controls - {{name}}
+{% endblock %}
+ 
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Control Your Bookings:</h2>
+  <div class="form">
+    <form method="POST" style="text-align: center;">
+      <div>
+        <p>Bookings are formatted as:</p>
+        <p>BookID | TripID | Departure Date | Trip Type | #Adult | #Child | Timestamp</p>
+      </div>
+      <div class="FormItem">
+        <label for="booking">View Bookings Made:</label><br>
+        <select class="input" id="booking" name="booking">
+          <option value="" disabled selected>Booked Trips...</option>
+          {% for book in user_book %}
+          <option value="{{book[0]}}">{{book[0]}} | {{book[2]}} | {{book[3]}} | {{book[7]}} | {{book[5]}} | {{book[6]}} | {{book[9]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+    </form>
+    <div>
+      <a href="/custupdate"><button>Update A Booking</button></a> <a href="/custdel"><button>Cancel A Booking</button></a>
+      <a href="/book"><button>Add A Booking</button></a> <a href="/changepassword"><button>Change Password</button></a>
+    </div>
+    <br>
+  </div>
+</div>
+{% endblock %}
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Manage your bookings here!</p>
+  <h2>Where?</h2>
+  <p>You can use the form to select one of your bookings.</p>
+  <h2>How?</h2>
+  <p>Use the buttons depending on your needs.</p>
+{% endblock %} 

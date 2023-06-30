@@ -1,0 +1,374 @@
+/* --------------------------------------------------------------- 
+This stylesheet is written for the group work part 2: implementation
+Author: REDACTED
+Last Edited: 11/05/2021
+ --------------------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Code adapted from https://www.w3schools.com/howto/howto_css_topnav_centered.asp*/
+
+/* From NE */
+
+/* Add a black background color to the top navigation */
+.topnav {
+    position: relative;
+    background-color: #F2F2F2;
+    border: 1px solid #0175C0;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #337AB7;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #0175C0;
+    color: #FFF;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #337AB7;
+    color: white;
+  }
+  
+  /* Right-aligned section inside the top navigation */
+  .topnav_right {
+    float: right;
+    margin-right: 10px;
+  }
+  
+  /* Responsive navigation menu - display links on top of each other instead of next to each other (for mobile devices) */
+  @media screen and (max-width: 768px) {
+    .topnav a, .topnav_right {
+      float: none;
+      display: block;
+    }
+  
+  }
+/* ---------------------------------------------------------------------------------------------------- */
+/* Code adapted from W3Schools - https://www.w3schools.com/howto/howto_css_login_form.asp */
+
+
+.login_form input[type=text], input[type=password], input[type="date"], select {
+  padding: 12px 20px;
+  margin: 8px auto;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.login_button {
+  padding: 14px 20px;
+  margin: 8px auto;
+}
+
+button {
+  background-color: #337AB7;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+.login_form {
+  padding: 16px;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+.login_form_label{
+  font-size: 26px;
+  color: #0175C0;
+}
+
+
+/* ------------------ GENERAL TAGS ------------------ */
+body {
+    background-color: #FFFFFF;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+  color: #0175C0;
+  padding: 1%;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+td, tr, th{
+  border: 1px solid #0175C0;
+}
+
+
+td{
+  text-align: center;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #0175C0;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+section{
+  margin: 10px;
+  background-color: #F2F2F2;
+  color: #0175C0;
+  border: 1px solid #0175C0;
+  border-radius: 10px;
+}
+
+p, label {
+  text-align: left;
+  font-size: 20px;
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 10px;
+}
+
+p {
+  color: #0175C0;
+}
+
+/* ------------------ CLASSES ------------------ */
+
+
+
+.header_title {
+    font-size: 40px;
+
+    display: inline-block;
+    width: 50%;
+    margin: 20px 20px;
+}
+
+.header_nav {
+    vertical-align: middle;
+    font-size: 17px;
+    
+    float: right;    
+}
+
+.header_nav a {
+    float: left;
+    color: #337AB7;
+    border: 1px solid #0175C0;
+    background-color: #F2F2F2;
+    text-align: center;
+    text-decoration: none;
+    font-size: 17px;
+
+    padding: 14px 16px;
+    margin: 10px 10px 0 0;
+}
+
+.header_nav a:hover {
+    background-color: #0175C0;
+    color: #FFF;
+}
+
+.title_horizon{
+    color: #0175C0;
+}
+
+.title_travel{
+    color: #E70033;
+}
+
+.generic_text{
+  font-size: 20px;
+}
+
+.locations {
+  list-style-type: disc;
+}
+.locations ::marker {
+  color: #0175C0;
+}
+
+.booking_form{
+  padding: 12px 20px;
+  margin: 8px;
+  display: block;
+  box-sizing: border-box;
+}
+
+.form_button{
+  background-color: #337AB7;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.payment_form, .payment_form_label{
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px auto;
+  display: block;
+  box-sizing: border-box;
+}
+
+.payment_form_label {
+  color: #0175C0;
+  font-size: 20px;
+  padding: 1%;
+}
+
+.trips_table{
+  border-collapse: collapse;
+  font-size: 20px;
+}
+
+.view_bookings_table{
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+  margin: 20px auto;
+  font-size: 20px;
+}
+
+.change_booking_button{
+  background-color: #0175C0;
+  width: 100%;
+  color: white;
+  padding: 7px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.admin_bookings_table{
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
+  margin: 20px;
+  font-size: 20px;
+}
+
+/* ------------------ IDs ------------------ */
+
+
+#email{
+  padding: 12px 20px;
+}
+
+
+/* RESPONSIVE DESIGN */
+* { 
+  box-sizing: border-box;
+}
+
+
+.row:after {
+  content: "";
+  clear: both;
+  display: block;}
+
+/* Mobile first */
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-m-1 {width: 8.33%;}
+  .col-m-2 {width: 16.66%;}
+  .col-m-3 {width: 25%;}
+  .col-m-4 {width: 33.33%;}
+  .col-m-5 {width: 41.66%;}
+  .col-m-6 {width: 50%;}
+  .col-m-7 {width: 58.33%;}
+  .col-m-8 {width: 66.66%;}
+  .col-m-9 {width: 75%;}
+  .col-m-10 {width: 83.33%;}
+  .col-m-11 {width: 91.66%;}
+  .col-m-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}

@@ -1,0 +1,44 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Delete route{% endblock %}
+
+{% block header %}
+  Delete Routes - {{name}}
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Delete Routes From the Database Using the Form Below:</h2>
+  <form method="POST">
+    <div class="form">
+      <div class="FormItem">
+        <label for="currentRoutes">Select from existing routes to delete:</label><br>
+        <select class="input" id="tripId" name="tripId">
+          <option value="" disabled selected>Routes...</option>
+          {% for row in routes %}
+          <option value="{{row[0]}}">{{row[0]}} | {{row[1]}} | {{row[2]}} | {{row[3]}} | {{row[4]}} | {{row[5]}}</option>          
+          {% endfor %}
+        </select>
+      </div>
+      <div class="FormItem">
+        <button type="submit" class="input btn">Delete Route</button>
+      </div>
+    </div>
+  </form>
+</div> 
+{% endblock %}  
+
+{% block aside %}
+  <h2>What?</h2>
+  <p>Book your own train journey!</p>
+  <h2>Where?</h2>
+  <p>You can use the form to create a booking.</p>
+  <h2>How?</h2>
+  <p>Enter details into the form and click the submit button.</p>
+{% endblock %} 

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'htbsStyle.css') }}">
+
+    <title>One-Way Booking</title>
+
+</head>
+
+
+<div>
+    <header class="col-12">
+        <h1 class="header_title"> <span class="title_horizon">Horizon</span> <span class="title_travel">Travel</span></h1>
+    </header>
+</div>
+
+
+<nav class="topnav col-12">
+
+    <a href="/horizonTravelBookingService">Home</a>
+    <a class="active" href="/htbsMakeBooking">Make a Booking</a>
+    <a style="background-color: red; color: white;" href="/customer">View Bookings</a>
+        
+    <nav class="topnav_right">
+        <a href="/search">Individual Work Pages</a>
+        <a style="background-color: red; color: white;" href="/customer">Account Details</a>
+        <a style="background-color: red; color: white;" href="/logout">Logout</a>
+    </nav>
+
+</nav>
+
+<div class="col-12">
+    
+    <section>
+
+        <h2>Booking Details</h2>
+
+        
+
+
+        <form action="/horizonTravelBookingService" method="POST" class="booking_form"> 
+            
+            <h3>Coach Trip:</h3>
+            <table class="trips_table"> 
+                <tr> 
+                    <th></th>
+                    <th> From </th>
+                    <th> To </th>
+                    <th> Departure Time </th> 
+                    <th> Arrival Time </th>
+                    <th> Price </th>
+                    
+                <tr> 
+                    <td><input type="radio" value="" name="selected_trip_id" required></td>
+                    <td>Birmingham</td> 
+                    <td>Newcastle</td> 
+                    <td> 4:00pm </td> 
+                    <td> 0:00am </td> 
+                    <td>£16.25</td> 
+                </tr> 
+            </table>
+
+            <h3>Train Journey:</h3>
+            <table class="trips_table"> 
+                <tr> 
+                    <th></th>
+                    <th> From </th>
+                    <th> To </th>
+                    <th> Departure Time </th> 
+                    <th> Arrival Time </th>
+                    <th> Price </th>
+                    
+                <tr> 
+                    <td><input type="radio" value="" name="selected_trip_id" required></td>
+                    <td>Birmingham</td> 
+                    <td>Newcastle</td> 
+                    <td> 4:00pm </td> 
+                    <td> 11:30pm </td> 
+                    <td>£130.00</td> 
+                </tr> 
+            </table>
+
+
+            <h3>Flight:</h3>
+            <table class="trips_table"> 
+                <tr> 
+                    <th></th>
+                    <th> From </th>
+                    <th> To </th>
+                    <th> Departure Time </th> 
+                    <th> Arrival Time </th>
+                    <th> Price </th>
+                    
+                <tr> 
+                    <td><input type="radio" value="" name="selected_trip_id" required></td>
+                    <td>Birmingham</td> 
+                    <td>Newcastle</td> 
+                    <td> 4:00pm </td> 
+                    <td> 5:30pm </td> 
+                    <td>£65.00</td> 
+                </tr> 
+            </table>
+
+            <br>
+            <br>
+
+            <label>What date do you want to depart on?:</label>
+            <input type="date" id="depart_date" name="depart_date" min="{{bookableFrom}}" class="col-2 col-m-12" required>
+
+            <br>
+
+
+            <br>
+
+
+            <label>How many Adults:</label>
+            <br>
+            <select name="adult_tickets" class="col-1 col-m-3" required>
+                <option value=1> 1 </option>
+                <option value=2> 2 </option>
+                <option value=3> 3 </option>
+                <option value=4> 4 </option>
+                <option value=5> 5 </option>
+                <option value=6> 6 </option>
+            </select>
+
+            <br>
+            <label>How Many Children (under age 10)</label>
+            <br>
+
+            <select name="child_tickets" class="col-1 col-m-3" required>
+                <option value=0 selected="selected"> 0 </option>
+                <option value=1> 1 </option>
+                <option value=2> 2 </option>
+                <option value=3> 3 </option>
+                <option value=4> 4 </option>
+            </select>
+
+
+
+
+
+            <br>
+            <input type="submit" value="Submit" class="form_button">
+
+
+            <br>
+            <br>
+
+         </form>
+
+         <a href="/horizonTravelBookingService" class="form_button"><button>Re-select Start location</button></a>
+    </section>
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!-- 
+  Individual Travel booking system for trains
+  Author: Ryan Morgan
+  Group: Easy Travel 
+-->
+{% extends 'base.html' %}
+
+{% block title %}Search Response{% endblock %}
+
+{% block header %}
+  Selected Train Journeys
+{% endblock %}
+
+
+{% block main %}
+<div id="formInput">
+  <h2 id="ContentTitle">Trips:</h2>
+  <div id="tableDiv">
+    <div>
+      <a href="/search"><button>Back to search page...</button></a>
+    </div>
+    <p><b>Trip:</b></p>
+    <table border = 1 class="center">
+      <tr>
+        <th>Trip ID</th>
+        <th>Place of Departure</th>
+        <th>Time of Departure</th>
+        <th>Place of Arrival</th>
+        <th>Time of Arrival</th>
+        <th>Price Per Adult</th>
+        <th>Price Per Child</th>
+      </tr>
+      {% for row in resultset %}
+      <tr>
+        <th> {{row[0]}} </th>
+        <th> {{row[1]}} </th>
+        <th> {{row[2]}} </th>
+        <th> {{row[3]}} </th>
+        <th> {{row[4]}} </th>
+        <th> &#163;{{row[5]}} </th>
+        <th> &#163;{{row[5] / 2}} </th>
+      </tr>
+      {% endfor %}
+    </table>
+    <p>Price for {{lookupdata[5]}} adult(s): &#163;{{prices[0]}}</p>
+    <p>Price for {{lookupdata[6]}} child(ren): &#163;{{prices[1]}}</p>
+    <p>Seats Available for {{lookupdata[2]}}: {{seatavailability[0]}}</p>
+    {% if triptype == 'return' %}
+    <p>Seats Available for Return {{lookupdata[3]}}: {{seatavailability[1]}}</p>
+    <p>Total cost of trip (including return) is: &#163;{{prices[2] * 2}}</p>
+    {% endif %}
+    {% if triptype != 'return' %}
+    <p>Total cost of trip is: &#163;{{prices[2]}}</p>
+    {% endif %}
+    <br>
+    <div>
+      <a href="/book"><button>Want to make a booking?</button></a>
+    </div>
+  </div>
+</div> 
+{% endblock %} 
+
+
+
+{% block aside %}
+  <h2>Here you can see the result of your search!</h2>
+{% endblock %} 
